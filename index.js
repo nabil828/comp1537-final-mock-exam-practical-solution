@@ -196,6 +196,28 @@ const setup = () => {
     });
   });
 
+  $('#unicorns').on('click', 'a', function () {
+    $('#unicorns').children().removeClass('active');
+    $(this).addClass('active');
+    unicorns.forEach(unicorn => {
+      if (unicorn.name === $(this).attr('id')) {
+        $('#unicornDetails').empty();
+        let loves = '';
+        unicorn.loves.forEach(food => {
+          loves += `<li>${food}</li>`;
+        });
+
+        $('#unicornDetails').append(`
+          <h3>${unicorn.name}</h3>
+          <p>DOB: ${unicorn.dob}</p>
+          <p>Weight: ${unicorn.weight}</p>
+          <ul>
+          ${loves}
+          </ul>
+          `);
+      };
+    });
+  });
 
 
 
